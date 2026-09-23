@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-def measure(times = 1)
+def measure(times = 1, &block)
   start_time = Time.now
 
-  times.times do
-    yield
-  end
+  times.times(&block)
 
   end_time = Time.now
 

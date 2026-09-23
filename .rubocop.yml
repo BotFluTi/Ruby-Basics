@@ -8,3 +8,14 @@ Layout/LineLength:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Lint/EmptyBlock:
+  Exclude:
+    - 'spec/**/*'
+
+Lint/FloatComparison:
+  Exclude:
+    - 'spec/**/*'
