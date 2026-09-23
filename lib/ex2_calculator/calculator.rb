@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-def add(a, b)
-  a + b
+def add(first_number, second_number)
+  first_number + second_number
 end
 
-def subtract(a, b)
-  a - b
+def subtract(first_number, second_number)
+  first_number - second_number
 end
 
 def sum(numbers)
@@ -28,8 +28,8 @@ def mul(numbers)
   total
 end
 
-def pow(a, b)
-  a**b
+def pow(base, exponent)
+  base**exponent
 end
 
 def fact(number)
