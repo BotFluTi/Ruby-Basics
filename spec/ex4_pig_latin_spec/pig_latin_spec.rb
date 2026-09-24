@@ -69,4 +69,19 @@ describe '#translate' do
   # Test-driving bonus:
   # * write a test asserting that capitalized words are still capitalized (but with a different initial capital letter, of course)
   # * retain the punctuation from the original phrase
+
+
+  it 'preserves capitalization' do
+    translate('Banana').should == 'Ananabay'
+    translate('Cherry Pie').should == 'Errychay Iepay'
+  end
+
+  it 'preserves punctuation' do
+    translate('hello, world!').should == 'ellohay, orldway!'
+    translate('eat pie.').should == 'eatay iepay.'
+  end
+
+  it 'preserves capitalization and punctuation together' do
+    translate('Hello, World!').should == 'Ellohay, Orldway!'
+  end
 end

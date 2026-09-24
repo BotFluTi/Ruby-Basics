@@ -2,20 +2,32 @@
 
 class Temperature
   def initialize(options)
+    raise ArgumentError, 'Provide either :c or :f' unless options.is_a?(Hash) && (options.key?(:c) ^ options.key?(:f))
+    # Checks only if at least one key is present
+    # raise ArgumentError, 'Provide either :c or :f' unless options.key?(:c) || options.key?(:f)
+
     @celsius = options[:c]
     @fahrenheit = options[:f]
   end
 
   def in_celsius
-    return @celsius if @celsius
+    return @celsius unless @celsius.nil?
 
-    (@fahrenheit - 32) * 5.0 / 9.0
+    self.class.ftoc(@fahrenheit)
   end
 
   def in_fahrenheit
-    return @fahrenheit if @fahrenheit
+    return @fahrenheit unless @fahrenheit.nil?
 
-    (@celsius * 9.0 / 5.0) + 32
+    self.class.ctof(@celsius)
+  end
+
+  def self.ftoc(degrees)
+    (degrees - 32) * 5.0 / 9.0
+  end
+
+  def self.ctof(degrees)
+    (degrees * 9.0 / 5.0) + 32
   end
 
   def self.from_celsius(degrees)

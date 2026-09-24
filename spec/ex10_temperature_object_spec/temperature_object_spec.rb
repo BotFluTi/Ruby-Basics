@@ -78,12 +78,12 @@ describe Temperature do
   # on individual instances of the class.
   describe 'can be constructed via factory methods' do
     it 'in degrees celsius' do
-      Temperature.from_celsius(50).in_celsius.should
+      Temperature.from_celsius(50).in_celsius.should == 50
       Temperature.from_celsius(50).in_fahrenheit.should == 122
     end
 
     it 'in degrees fahrenheit' do
-      Temperature.from_fahrenheit(50).in_fahrenheit.should
+      Temperature.from_fahrenheit(50).in_fahrenheit.should == 50
       Temperature.from_fahrenheit(50).in_celsius.should == 10
     end
   end
@@ -94,15 +94,46 @@ describe Temperature do
   # 2. refactor to call those methods from the rest of the object
   #
   # run *all* the tests during your refactoring, to make sure you did it right
-  #
+  describe 'constructor validation' do
+    it 'rejects missing temperature units' do
+      expect { Temperature.new({}) }.to raise_error(
+                                          ArgumentError, 'Provide either :c or :f'
+                                        )
+    end
+
+    it 'rejects unknown temperature units' do
+      expect { Temperature.new(kelvin: 300) }.to raise_error(ArgumentError)
+    end
+
+    it 'rejects multiple temperature units' do
+      expect { Temperature.new(c: 20, f: 68) }.to raise_error(ArgumentError)
+    end
+
+    it 'accepts zero degrees' do
+      expect(Temperature.new(c: 0).in_celsius).to eq(0)
+      expect(Temperature.new(f: 0).in_fahrenheit).to eq(0)
+    end
+  end
+
   describe 'utility class methods' do
+    it 'converts fahrenheit to celsius' do
+      Temperature.ftoc(32).should == 0
+      Temperature.ftoc(212).should == 100
+      Temperature.ftoc(68).should == 20
+    end
+
+    it 'converts celsius to fahrenheit' do
+      Temperature.ctof(0).should == 32
+      Temperature.ctof(100).should == 212
+      Temperature.ctof(37).should be_within(0.1).of(98.6)
+    end
   end
 
   # Here's another way to solve the problem!
   describe 'Temperature subclasses' do
     describe 'Celsius subclass' do
       it 'is constructed in degrees celsius' do
-        Celsius.new(50).in_celsius.should
+        Celsius.new(50).in_celsius.should == 50
         Celsius.new(50).in_fahrenheit.should == 122
       end
 
@@ -113,7 +144,7 @@ describe Temperature do
 
     describe 'Fahrenheit subclass' do
       it 'is constructed in degrees fahrenheit' do
-        Fahrenheit.new(50).in_fahrenheit.should
+        Fahrenheit.new(50).in_fahrenheit.should == 50
         Fahrenheit.new(50).in_celsius.should == 10
       end
 

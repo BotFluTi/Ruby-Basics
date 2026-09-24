@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Book
+  LOWERCASE_WORDS = %w[a an and in of the].freeze
+
   attr_reader :title
 
   def title=(title)
@@ -10,10 +12,8 @@ class Book
   private
 
   def format_title(title)
-    little_words = %w[a an and in of the]
-
     title.split.map.with_index do |word, index|
-      if index.zero? || word == 'i' || !little_words.include?(word)
+      if index.zero? || word == 'i' || !LOWERCASE_WORDS.include?(word)
         word.capitalize
       else
         word

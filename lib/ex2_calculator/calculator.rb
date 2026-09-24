@@ -9,23 +9,11 @@ def subtract(first_number, second_number)
 end
 
 def sum(numbers)
-  total = 0
-
-  numbers.each do |number|
-    total += number
-  end
-
-  total
+  numbers.reduce(0) { |total, number| total + number }
 end
 
 def mul(numbers)
-  total = 1
-
-  numbers.each do |number|
-    total *= number
-  end
-
-  total
+  numbers.reduce(1) { |total, number| total * number }
 end
 
 def pow(base, exponent)
@@ -33,11 +21,5 @@ def pow(base, exponent)
 end
 
 def fact(number)
-  total = 1
-
-  (1..number).each do |i|
-    total *= i
-  end
-
-  total
+  (1..number).reduce(1) { |total, n| total * n }
 end

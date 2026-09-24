@@ -61,8 +61,8 @@ describe 'Simon says' do
 
     it 'returns the first several letters' do
       s = 'abcdefg'
-      start_of_word(s, 1).should
-      start_of_word(s, 2).should
+      start_of_word(s, 1).should == 'a'
+      start_of_word(s, 2).should == 'ab'
       start_of_word(s, 3).should == 'abc'
     end
   end
