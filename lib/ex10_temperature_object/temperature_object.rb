@@ -3,6 +3,7 @@
 class Temperature
   def initialize(options)
     raise ArgumentError, 'Provide either :c or :f' unless options.is_a?(Hash) && (options.key?(:c) ^ options.key?(:f))
+
     # Checks only if at least one key is present
     # raise ArgumentError, 'Provide either :c or :f' unless options.key?(:c) || options.key?(:f)
 
