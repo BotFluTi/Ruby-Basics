@@ -1,0 +1,21 @@
+AllCops:
+  NewCops: enable
+
+Layout/LineLength:
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Lint/EmptyBlock:
+  Exclude:
+    - 'spec/**/*'
+
+Lint/FloatComparison:
+  Exclude:
+    - 'spec/**/*'
